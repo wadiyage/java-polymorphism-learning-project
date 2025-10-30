@@ -11,20 +11,11 @@ import java.util.ArrayList;
  * @author Dell
  */
 public class ControlRoom {
-    private WaterLevelObserver[] observerArray = new WaterLevelObserver[0];
+    private ArrayList<WaterLevelObserver> observerList = new ArrayList<>();
     private int waterLevel;
     
     public void addWaterLevelObserver(WaterLevelObserver waterLevelObserver) {
-        extendsWaterLevelObserver();
-        observerArray[observerArray.length-1]=waterLevelObserver;
-    }
-    
-    public void extendsWaterLevelObserver() {
-        WaterLevelObserver[] tempObserverArray = new WaterLevelObserver[observerArray.length+1];
-        for(int i=0;i<observerArray.length;i++) {
-            tempObserverArray[i]=observerArray[i];
-        }
-        observerArray=tempObserverArray;
+        observerList.add(waterLevelObserver);
     }
     
     public void setWaterLevel(int waterLevel) {
@@ -35,7 +26,7 @@ public class ControlRoom {
     }
     
     public void notifyObserver() {
-        for(WaterLevelObserver waterLevelObserver:observerArray) {
+        for(WaterLevelObserver waterLevelObserver:observerList) {
             waterLevelObserver.update(waterLevel);
         }
     }
