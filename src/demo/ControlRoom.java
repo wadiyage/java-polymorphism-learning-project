@@ -11,46 +11,32 @@ import java.util.ArrayList;
  * @author Dell
  */
 public class ControlRoom {
-    private ArrayList<Alarm> alarmList;
-    private ArrayList<Display> displayList;
-    private SMSSender sMSSender;
-    private ArrayList<Splitter> splitterList;
-    
+    private WaterLevelObserver[] observerArray = new WaterLevelObserver[0];
     private int waterLevel;
     
-    public void addAlarm(Alarm alarm) {
-        alarmList.add(alarm);
+    public void addWaterLevelObserver(WaterLevelObserver waterLevelObserver) {
+        extendsWaterLevelObserver();
+        observerArray[observerArray.length-1]=waterLevelObserver;
     }
     
-    public void addDisplay(Display display) {
-        displayList.add(display);
-    }
-    
-    public void addSMSSender(SMSSender sMSSender) {
-        this.sMSSender=sMSSender;
-    }
-    
-    public void addSplitter(Splitter splitter) {
-        splitterList.add(splitter);
+    public void extendsWaterLevelObserver() {
+        WaterLevelObserver[] tempObserverArray = new WaterLevelObserver[observerArray.length+1];
+        for(int i=0;i<observerArray.length;i++) {
+            tempObserverArray[i]=observerArray[i];
+        }
+        observerArray=tempObserverArray;
     }
     
     public void setWaterLevel(int waterLevel) {
         if(this.waterLevel!=waterLevel) {
             this.waterLevel=waterLevel;
         }
-        notifyDevices();
+        notifyObserver();
     }
     
-    public void notifyDevices() {
-        for(Alarm alarm:alarmList) {
-            alarm.operateAlarm(waterLevel);
-        }
-        for(Display display:displayList) {
-            display.display(waterLevel);
-        }
-        sMSSender.sendSMS(waterLevel);
-        for(Splitter splitter:splitterList) {
-            splitter.split(waterLevel);
+    public void notifyObserver() {
+        for(WaterLevelObserver waterLevelObserver:observerArray) {
+            waterLevelObserver.update(waterLevel);
         }
     }
 }

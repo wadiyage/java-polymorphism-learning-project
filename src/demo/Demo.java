@@ -19,17 +19,13 @@ public class Demo {
      */
     public static void main(String[] args) throws InterruptedException {
         ControlRoom controlRoom = new ControlRoom();
-        controlRoom.addAlarm(new Alarm());
-        controlRoom.addAlarm(new Alarm());
+        controlRoom.addWaterLevelObserver(new Alarm());
+        controlRoom.addWaterLevelObserver(new Alarm());
+        controlRoom.addWaterLevelObserver(new Alarm());
         
-        controlRoom.addDisplay(new Display());
-        controlRoom.addDisplay(new Display());
+        controlRoom.addWaterLevelObserver(new Display());
         
-        controlRoom.addSMSSender(new SMSSender());
-        
-        controlRoom.addSplitter(new Splitter());
-        controlRoom.addSplitter(new Splitter());
-        controlRoom.addSplitter(new Splitter());
+        controlRoom.addWaterLevelObserver(new SMSSender());
         
         Random random = new Random();
         while(true) {

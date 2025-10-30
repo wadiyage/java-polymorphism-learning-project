@@ -8,18 +8,15 @@ package demo;
  *
  * @author Dell
  */
-public class Alarm {
-    private int waterLevel;
-    
-    public Alarm() {
-        waterLevel=0;
-    }
-    
-    public void operateAlarm(int waterLevel) {
-        this.waterLevel=waterLevel;
-        if(this.waterLevel>50)
+public class Alarm extends WaterLevelObserver {
+
+    @Override
+    public void update(int waterLevel) {
+        if(waterLevel>50)
             System.out.println("Alarm ON!");
         else
             System.out.println("Alarm OFF!");
     }
+    
+    
 }

@@ -8,12 +8,9 @@ package demo;
  *
  * @author Dell
  */
-public class SMSSender extends WaterLevelObserver {
-
-    @Override
+public class WaterLevelObserver {
+    
     public void update(int waterLevel) {
-        System.out.println("Sending SMS...");
+        
     }
-    
-    
 }

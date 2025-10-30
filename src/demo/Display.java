@@ -8,16 +8,12 @@ package demo;
  *
  * @author Dell
  */
-public class Display {
-    private int waterLevel;
+public class Display extends WaterLevelObserver {
 
-    public Display() {
-        waterLevel=0;
+    @Override
+    public void update(int waterLevel) {
+        System.out.println("Water Level: "+waterLevel);
     }
     
     
-    public void display(int waterLevel) {
-        this.waterLevel=waterLevel;
-        System.out.println("Water Level: "+this.waterLevel);
-    }
 }
