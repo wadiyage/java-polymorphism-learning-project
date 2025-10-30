@@ -27,6 +27,8 @@ public class Demo {
         
         controlRoom.addWaterLevelObserver(new SMSSender());
         
+        controlRoom.addWaterLevelObserver(new Splitter());
+        
         Random random = new Random();
         while(true) {
             int waterLevel=random.nextInt(101);

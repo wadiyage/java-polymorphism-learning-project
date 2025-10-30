@@ -8,20 +8,16 @@ package demo;
  *
  * @author Dell
  */
-public class Splitter {
-    private int waterLevel;
+public class Splitter extends WaterLevelObserver {
 
-    public Splitter() {
-        waterLevel=0;
-    }
-    
-    public void split(int waterLevel) {
-        this.waterLevel=waterLevel;
+    @Override
+    public void update(int waterLevel) {
         if(waterLevel>=75)
             System.out.println("Splitter ON!");
         else 
             System.out.println("Splitter OFF!");
     }
+    
     
     
 }
