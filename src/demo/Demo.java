@@ -22,6 +22,7 @@ public class Demo {
         controlRoom.addAlarm(new Alarm());
         controlRoom.addDisplay(new Display());
         controlRoom.addSMSSender(new SMSSender());
+        controlRoom.addSplitter(new Splitter());
         
         Random random = new Random();
         while(true) {

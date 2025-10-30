@@ -12,6 +12,7 @@ public class ControlRoom {
     private Alarm alarm;
     private Display display;
     private SMSSender sMSSender;
+    private Splitter splitter;
     
     private int waterLevel;
     
@@ -27,6 +28,10 @@ public class ControlRoom {
         this.sMSSender=sMSSender;
     }
     
+    public void addSplitter(Splitter splitter) {
+        this.splitter=splitter;
+    }
+    
     public void setWaterLevel(int waterLevel) {
         if(this.waterLevel!=waterLevel) {
             this.waterLevel=waterLevel;
@@ -38,5 +43,6 @@ public class ControlRoom {
         alarm.operateAlarm(waterLevel);
         display.display(waterLevel);
         sMSSender.sendSMS(waterLevel);
+        splitter.split(waterLevel);
     }
 }
