@@ -2,8 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package demo;
+package waterlevelsimulator;
 
+import waterlevelsimulator.observer.SMSSender;
+import waterlevelsimulator.observer.Display;
+import waterlevelsimulator.observer.Splitter;
+import waterlevelsimulator.observer.Alarm;
+import waterlevelsimulator.subject.ControlRoom;
 import java.util.Random;
 
 /**
