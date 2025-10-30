@@ -4,24 +4,26 @@
  */
 package demo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Dell
  */
 public class ControlRoom {
-    private Alarm alarm;
-    private Display display;
+    private ArrayList<Alarm> alarmList;
+    private ArrayList<Display> displayList;
     private SMSSender sMSSender;
-    private Splitter splitter;
+    private ArrayList<Splitter> splitterList;
     
     private int waterLevel;
     
     public void addAlarm(Alarm alarm) {
-        this.alarm=alarm;
+        alarmList.add(alarm);
     }
     
     public void addDisplay(Display display) {
-        this.display=display;
+        displayList.add(display);
     }
     
     public void addSMSSender(SMSSender sMSSender) {
@@ -29,7 +31,7 @@ public class ControlRoom {
     }
     
     public void addSplitter(Splitter splitter) {
-        this.splitter=splitter;
+        splitterList.add(splitter);
     }
     
     public void setWaterLevel(int waterLevel) {
@@ -40,9 +42,15 @@ public class ControlRoom {
     }
     
     public void notifyDevices() {
-        alarm.operateAlarm(waterLevel);
-        display.display(waterLevel);
+        for(Alarm alarm:alarmList) {
+            alarm.operateAlarm(waterLevel);
+        }
+        for(Display display:displayList) {
+            display.display(waterLevel);
+        }
         sMSSender.sendSMS(waterLevel);
-        splitter.split(waterLevel);
+        for(Splitter splitter:splitterList) {
+            splitter.split(waterLevel);
+        }
     }
 }
